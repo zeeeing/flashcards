@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const quizzesSlice = createSlice({
-  name: "topics",
+  name: "quizzes",
   initialState,
   reducers: {
     addQuiz: (state, action) => {
