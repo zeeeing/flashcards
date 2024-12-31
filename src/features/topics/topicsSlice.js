@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addQuiz } from "../quizzes/quizzesSlice";
 
 const initialState = {
   topics: {},
@@ -18,6 +19,18 @@ const topicsSlice = createSlice({
       };
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addQuiz, (state, action) => {
+        const { id, topicId } = action.payload;
+
+        if (state.topics[topicId]) {
+          state.topics[topicId].quizIds.push(id);
+        } else {
+          console.error(`Topic with ID ${topicId} not found`);
+        }
+      });
+  }
 });
 
 export const selectTopics = (state) => state.topics.topics;
